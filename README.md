@@ -1,4 +1,4 @@
-# Smart Village App: HumHub extension
+# Smart Village App - HumHub extension
 
 This is the place for a new module to extend functionalities of https://github.com/humhub. We need to enrich the platform with features. [Issues](https://github.com/ikuseiGmbH/smart-village-app-humhub-ext/issues) are used for several tasks, tagged by modules or core.
 
@@ -10,11 +10,11 @@ HumHub is an Open Source Enterprise Social Network with countless freely availab
 
 ### Calendar
 
-Calendar Module for HumHub: https://github.com/humhub/calendar
+Calendar for spaces or user profiles: https://github.com/humhub/calendar
 
 ### Mail
 
-User Mail System: https://github.com/humhub/mail
+A private messaging system for direct communication: https://github.com/humhub/mail
 
 ### cFiles
 
@@ -26,12 +26,12 @@ Collect and share information with your very own Wiki: https://github.com/humhub
 
 ### Tasks
 
-Simple Task Management: https://github.com/humhub/tasks
+Simple taskmanager for your spaces: https://github.com/humhub/tasks
 
 ### Polls
 
-Polls Module: https://github.com/humhub/polls
+Easy to use poll system: https://github.com/humhub/polls
 
-### REST
+### RESTful API
 
-HumHub Rest API Module https://github.com/humhub/rest
+Provides a RESTful API to the HumHub installation https://github.com/humhub/rest
