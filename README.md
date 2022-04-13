@@ -35,3 +35,7 @@ Easy to use poll system: https://github.com/humhub/polls
 ### RESTful API
 
 Provides a RESTful API to the HumHub installation https://github.com/humhub/rest
+
+### Link list
+
+Adds a link list to spaces or user profiles https://github.com/humhub-contrib/linklist
