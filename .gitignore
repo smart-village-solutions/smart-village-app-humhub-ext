@@ -1,0 +1,7 @@
+.htaccess
+nbproject
+.idea/*
+.gitmodules
+/composer.lock
+.github/*
+

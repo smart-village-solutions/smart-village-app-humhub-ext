@@ -1,0 +1,671 @@
+swagger: '2.0'
+info:
+  description: |
+    Welcome to the HumHub user module API reference.
+
+  version: 1.0.0
+  title: HumHub - User API
+  contact:
+    email: info@humhub.com
+  license:
+    name: AGPLv2
+    url: 'https://www.humhub.org/en/licences'
+basePath: /api/v1
+schemes:
+  - http
+  - https
+tags:
+  - name: User
+    description: API to access and manage user information.
+    externalDocs:
+      description: Find out more
+      url: 'http://docs.humhub.org'
+  - name: Group
+    description: Group API
+  - name: Invite
+    description: Invite new users to the HumHub installation
+  - name: Session
+    description: User sessions
+paths:
+  '/user':
+    get:
+      tags:
+        - User
+      summary: Find all users
+      description: ''
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: 'common.yaml#/components/parameters/pageParam'
+        - $ref: 'common.yaml#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              total:
+                $ref: 'common.yaml#/components/properties/totalProperty'
+              page:
+                $ref: 'common.yaml#/components/properties/pageProperty'
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/User'
+    post:
+      tags:
+        - User
+      summary: Add a new user to the installation
+      description: ''
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: User object to be added to the installation
+          required: true
+          schema:
+            type: object
+            required:
+              - account
+              - profile
+              - password
+            properties:
+              account:
+                $ref: "#/definitions/Account"
+              profile:
+                $ref: "#/definitions/Profile"
+              password:
+                $ref: "#/definitions/Password"
+      responses:
+        default:
+          description: Successful operation
+
+  '/user/get-by-username':
+    get:
+      tags:
+        - User
+      summary: Get user by username
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: The username of user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        '404':
+          description: User not found
+
+  '/user/get-by-email':
+    get:
+      tags:
+        - User
+      summary: Get user by email
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          description: The email of user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        '404':
+          description: User not found
+
+  '/user/{id}':
+    get:
+      tags:
+        - User
+      summary: Get user by user id
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of user
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: Invalid user id supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - User
+      summary: Update an existing user
+      description: ''
+      operationId: updateUser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of user
+          required: true
+          type: integer
+        - in: body
+          name: body
+          description: Updated user object
+          required: true
+          schema:
+            type: object
+            properties:
+              account:
+                $ref: "#/definitions/Account"
+              profile:
+                $ref: "#/definitions/Profile"
+              password:
+                $ref: "#/definitions/Password"
+      responses:
+        '200':
+          description: successful operation, the updated user record
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: Invalid user supplied
+        '404':
+          description: User not found
+    delete:
+      tags:
+        - User
+      summary: Soft deletes an user by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of user
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+  '/user/full/{id}':
+    delete:
+      tags:
+        - User
+      summary: Hard deletes an user by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of user
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Begin Group
+#-----------------------------------------------------------------------------------------------------------------------
+  '/user/group':
+    get:
+      tags:
+        - Group
+      summary: Find all Groups
+      description: ''
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: 'common.yaml#/components/parameters/pageParam'
+        - $ref: 'common.yaml#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              total:
+                $ref: 'common.yaml#/components/properties/totalProperty'
+              page:
+                $ref: 'common.yaml#/components/properties/pageProperty'
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Group'
+    post:
+      tags:
+        - Group
+      summary: Adds a new group
+      description: ''
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: The added Group object
+          required: true
+          schema:
+            type: Group
+            $ref: '#/definitions/Group'
+            required:
+              - name
+      responses:
+        default:
+          description: Successful operation
+  '/user/group/{id}':
+    get:
+      tags:
+        - Group
+      summary: Get group by id
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of group
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Group"
+        '400':
+          description: Invalid group id supplied
+        '404':
+          description: Group not found
+      put:
+        tags:
+          - Group
+        summary: Update a group
+        description: ''
+        produces:
+          - application/json
+        parameters:
+          - name: id
+            in: path
+            description: The id of group
+            required: true
+            type: integer
+          - in: body
+            name: body
+            description: Updated group object
+            required: true
+            schema:
+              type: object
+              $ref: "#/definitions/Group"
+        responses:
+          '200':
+            description: successful operation, the updated group record
+            schema:
+              $ref: "#/definitions/Group"
+          '400':
+            description: Invalid group supplied
+          '404':
+            description: Group not found
+      delete:
+        tags:
+          - Group
+        summary: Deletes a group by id
+        produces:
+          - application/json
+        parameters:
+          - name: id
+            in: path
+            description: The id of group
+            required: true
+            type: integer
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Invalid group id supplied
+          '404':
+            description: Group not found
+
+  '/user/group/{id}/member':
+    get:
+      tags:
+        - Group
+      summary: List members
+      description: 'Lists all members of the given group id.'
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: id
+          in: path
+          description: The id of the group
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: object
+            properties:
+              total:
+                $ref: 'common.yaml#/components/properties/totalProperty'
+              page:
+                $ref: 'common.yaml#/components/properties/pageProperty'
+              results:
+                type: array
+                items:
+                  $ref: "user.yaml#/definitions/UserShort"
+        404:
+          description: Not found
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 404
+              message:
+                type: string
+                example: Group not found
+    put:
+      tags:
+        - Group
+      summary: Add a new member
+      description: 'Adds new member to the given group'
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: id
+          in: path
+          description: The id of group
+          required: true
+          type: integer
+        - name: userId
+          in: query
+          description: The id of user
+          required: true
+          type: integer
+        - in: query
+          name: isManager
+          type: boolean
+          description: Is group manager
+          default: false
+      responses:
+        default:
+          description: Successful operation
+    delete:
+      tags:
+        - Group
+      summary: Removes a member
+      description: 'Removes a member from given group id.'
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: id
+          in: path
+          description: The id of group
+          required: true
+          type: integer
+        - name: userId
+          in: query
+          description: The id of user
+          required: true
+          type: integer
+      responses:
+        default:
+          description: Successful operation
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Begin Session
+#-----------------------------------------------------------------------------------------------------------------------
+  '/user/session/all/{id}':
+    delete:
+      tags:
+        - Session
+      summary: Deletes all sessions for a particular user
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of user
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+
+
+securityDefinitions:
+  $ref: "common.yaml#/securityDefinitions"
+
+
+definitions:
+  UserShort:
+    description: a short representation of the user
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+        example: 14
+      guid:
+        type: string
+        readOnly: true
+        example: cd081891-d2e2-40d5-84a4-b47309e71c80
+      display_name:
+        type: string
+        example: John Doe
+      url:
+        type: string
+        example: http://localhost/p/humhub/master/u/j.doe/
+
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+        example: 14
+      guid:
+        type: string
+        readOnly: true
+        example: cd081891-d2e2-40d5-84a4-b47309e71c80
+      display_name:
+        type: string
+        example: John Doe
+      url:
+        type: string
+        example: http://localhost/p/humhub/master/u/j.doe/
+      account:
+        $ref: "#/definitions/Account"
+      profile:
+        $ref: "#/definitions/Profile"
+
+  Account:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+        example: 14
+      guid:
+        type: string
+        readOnly: true
+        example: cd081891-d2e2-40d5-84a4-b47309e71c80
+      username:
+        type: string
+        example: john.doe
+      email:
+        type: string
+        example: john.doe@example.com
+      visibility:
+        type: integer
+        format: int64
+        readOnly: true
+      status:
+        type: integer
+        example: 1
+      tags:
+        type: array
+        items:
+          type: string
+        example: ["Administration", "Support", "HumHub"]
+        readOnly: true
+      tagsField:
+        type: array
+        items:
+          type: string
+        example: ["Administration", "Support", "HumHub"]
+        writeOnly: true
+      language:
+        type: string
+        example: DE
+        readOnly: true
+      time_zone:
+        type: string
+        example: Europe/Paris
+        readOnly: true
+      contentcontainer_id:
+        type: integer
+        example: 5
+    xml:
+      name: Account
+
+  Profile:
+    type: object
+    properties:
+      firstname:
+        type: string
+        example: John
+      lastname:
+        type: string
+        example: Doe
+      title:
+        type: string
+        example: Test user
+      gender:
+        type: string
+        example: male
+      street:
+        type: string
+        example: New Street 5
+      zip:
+        type: string
+        example: 80331
+      city:
+        type: string
+        example: Munich
+      country:
+        type: string
+        example: DE (ISO 3166 code)
+      state:
+        type: string
+      birthday_hide_year:
+        type: integer
+      birthday:
+        type: string
+        format: date
+        example: "1990-01-01"
+      about:
+        type: string
+      phone_private:
+        type: string
+      phone_work:
+        type: string
+      mobile:
+        type: string
+      fax:
+        type: string
+      im_skype:
+        type: string
+      im_xmpp:
+        type: string
+      url:
+        type: string
+      url_facebook:
+        type: string
+      url_linkedin:
+        type: string
+      url_xing:
+        type: string
+      url_youtube:
+        type: string
+      url_vimeo:
+        type: string
+      url_flickr:
+        type: string
+      url_myspace:
+        type: string
+      url_twitter:
+        type: string
+    xml:
+      name: Profile
+
+  Group:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+        example: 1
+      name:
+        type: string
+        example: Example group
+      description:
+        type: string
+        example: Users of Example
+      show_at_directory:
+        type: boolean
+        example: false
+      show_at_registration:
+        type: boolean
+        example: false
+      sort_order:
+        type: int
+        example: 100
+    xml:
+      name: Group
+
+  Password:
+    type: object
+    properties:
+      newPassword:
+        type: string
+        example: SuperSecretPassword
+      mustChangePassword:
+        type: boolean
+        example: true
+    xml:
+      name: Password
