@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "ee47a39e-f7af-430a-9609-2da3174aefed",
+		"name": "Smart Village API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add new user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"account\": {\n    \"username\": \"kim.doe\",\n    \"email\": \"kim.doe@example.com\",\n    \"status\": 1,\n    \"tagsField\": [\n      \"Administration\",\n      \"Support\",\n      \"HumHub\"\n    ],\n    \"contentcontainer_id\": 5\n  },\n  \"profile\": {\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"title\": \"Test user\",\n    \"gender\": \"male\"\n\n  },\n  \"password\": {\n    \"newPassword\": \"SuperSecretPassword\", \n \"newPasswordConfirm\": \"SuperSecretPassword\" \n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/auth/register",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
