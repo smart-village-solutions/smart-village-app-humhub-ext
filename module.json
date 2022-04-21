@@ -1,12 +1,12 @@
 {
     "id": "rest",
-    "name": "RESTful API",
-    "description": "Provides a RESTful API to the HumHub installation",
+    "name": "Smart Village App",
+    "description": "Provides extended features for integration in the Smart Village App",
     "keywords": [
-        "api", "rest"
+        "smartVillage", "api", "module"
     ],
-    "version": "0.4.4",
-    "homepage": "https://github.com/humhub/rest",
+    "version": "1.0",
+    "homepage": "https://github.com/ikuseiGmbH/smart-village-app-humhub-ext",
     "humhub": {
         "minVersion": "1.8"
     },
