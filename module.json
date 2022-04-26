@@ -1,0 +1,14 @@
+{
+    "id": "smartVillage",
+    "name": "Smart Village App",
+    "description": "Provides extended features for integration in the Smart Village App.",
+    "keywords": [
+        "smartVillage", "api", "module"
+    ],
+    "version": "0.1",
+    "homepage": "https://github.com/ikuseiGmbH/smart-village-app-humhub-ext",
+    "humhub": {
+          "minVersion": "1.2"
+      },
+    "screenshots": ["assets/module_image.png"]
+}
