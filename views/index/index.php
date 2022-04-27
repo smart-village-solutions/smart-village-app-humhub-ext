@@ -3,7 +3,7 @@
 use humhub\widgets\Button;
 
 // Register our module assets, this could also be done within the controller
-\humhub\modules\smartVillage\smartVillage\assets\Assets::register($this);
+\humhub\modules\smartVillage\assets\Assets::register($this);
 
 $displayName = (Yii::$app->user->isGuest) ? Yii::t('SmartVillageModule.base', 'Guest') : Yii::$app->user->getIdentity()->displayName;
 

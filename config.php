@@ -1,13 +1,13 @@
 <?php
 
-use humhub\modules\smartVillage\smartVillage\Events;
+use humhub\modules\smartVillage\Events;
 use humhub\modules\admin\widgets\AdminMenu;
 use humhub\widgets\TopMenu;
 
 return [
 	'id' => 'smartVillage',
-	'class' => 'humhub\modules\smartVillage\smartVillage\Module',
-	'namespace' => 'humhub\modules\smartVillage\smartVillage',
+	'class' => 'humhub\modules\smartVillage\Module',
+	'namespace' => 'humhub\modules\smartVillage',
 	'events' => [
 		[
 			'class' => TopMenu::class,

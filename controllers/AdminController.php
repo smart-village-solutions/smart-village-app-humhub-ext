@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\smartVillage\smartVillage\controllers;
+namespace humhub\modules\smartVillage\controllers;
 
 use humhub\modules\admin\components\Controller;
 

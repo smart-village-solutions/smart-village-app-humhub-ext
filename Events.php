@@ -1,6 +1,6 @@
 <?php
 
-namespace  humhub\modules\smartVillage\smartVillage;
+namespace  humhub\modules\smartVillage;
 
 use Yii;
 use yii\helpers\Url;

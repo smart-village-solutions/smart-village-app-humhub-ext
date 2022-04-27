@@ -1,6 +1,6 @@
 <?php
 
-namespace  humhub\modules\smartVillage\smartVillage\assets;
+namespace  humhub\modules\smartVillage\assets;
 
 use yii\web\AssetBundle;
 
