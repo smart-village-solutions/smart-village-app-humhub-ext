@@ -45,7 +45,7 @@ class Events
         /* @var \humhub\modules\rest\Module $restModule */
         $restModule = Yii::$app->getModule('rest');
         $restModule->addRules([
-            ['pattern' => 'auth/register/', 'route' => 'smartVillage/auth/user/user/create', 'verb' => 'POST']
+            ['pattern' => 'auth/register/', 'route' => 'smartVillage/user/user/create', 'verb' => 'POST']
         ], 'smartVillage');
     }
 }
