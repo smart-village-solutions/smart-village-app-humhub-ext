@@ -5,7 +5,7 @@ namespace humhub\modules\smartVillage;
 use Yii;
 use yii\helpers\Url;
 
-class Module extends humhub\components\Module
+class Module extends \humhub\components\Module
 {
     /**
     * @inheritdoc
