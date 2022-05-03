@@ -26,8 +26,7 @@ class UserController extends AuthBaseController
      *
      * @return array
      */
-    public function actionCreate()
-    {
+    public function actionCreate(){
         $user = new User();
         $user->scenario = 'editAdmin';
         $user->load(Yii::$app->request->getBodyParam("account", []), '');

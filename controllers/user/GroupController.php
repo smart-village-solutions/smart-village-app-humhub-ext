@@ -11,19 +11,18 @@ use Yii;
 class GroupController extends AuthBaseController
 {
     /**
-     *  By Default humhub default group is USER group whose id is 2,
+     *  By Default Humhub default group is USER group whose id is 2,
      */
     const USER_DEFAULT_GROUP_ID = 2;
 
     /**
-     * Adds the user to a particular humhub group by passing groupID and userID
+     * Adds the user to a particular Humhub group by passing groupID and userID
      *
      * @param $id
      * @param $userId
      * @return array
      */
-    public function actionMemberAddWithoutAuth($id,$userId)
-    {
+    public function actionMemberAddWithoutAuth($id,$userId){
         $group = Group::findOne(['id' => $id]);
         if ($group === null) {
             return $this->returnError(404, 'Group not found!');
