@@ -42,8 +42,7 @@ abstract class AuthBaseController extends Controller
      * @inheritdoc
      */
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action){
         Yii::$app->response->format = 'json';
 
         Yii::$app->request->setBodyParams(null);
@@ -59,8 +58,7 @@ abstract class AuthBaseController extends Controller
      * @param User $user
      * @return bool
      */
-    public function isUserEnabled(User $user)
-    {
+    public function isUserEnabled(User $user){
         $config = new ConfigureForm();
         $config->loadSettings();
 
@@ -83,8 +81,7 @@ abstract class AuthBaseController extends Controller
      * @param array $additional
      * @return array
      */
-    protected function returnError($statusCode = 400, $message = 'Invalid request', $additional = [])
-    {
+    protected function returnError($statusCode = 400, $message = 'Invalid request', $additional = []){
         Yii::$app->response->statusCode = $statusCode;
         return array_merge(['code' => $statusCode, 'message' => $message], $additional);
     }
@@ -98,8 +95,7 @@ abstract class AuthBaseController extends Controller
      * @param array $additional
      * @return array
      */
-    protected function returnSuccess($message = 'Request successful', $statusCode = 200, $additional = [])
-    {
+    protected function returnSuccess($message = 'Request successful', $statusCode = 200, $additional = []){
         Yii::$app->response->statusCode = $statusCode;
         return array_merge(['code' => $statusCode, 'message' => $message], $additional);
     }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e7f61874-18fc-44fc-a662-8958226e429b",
+		"_postman_id": "66517823-b452-408a-a2fc-2285d82f71c1",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -37,6 +37,29 @@
 						"v1",
 						"auth",
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Space membership request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/space/1/membership/1/request",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"space",
+						"1",
+						"membership",
+						"1",
+						"request"
 					]
 				}
 			},
