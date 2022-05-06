@@ -47,6 +47,7 @@ class Events
         $restModule->addRules([
             ['pattern' => 'auth/register/', 'route' => 'smartVillage/user/user/create', 'verb' => 'POST'],
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
+            ['pattern' => 'mail/show-messages', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
         ], 'smartVillage');
     }
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66517823-b452-408a-a2fc-2285d82f71c1",
+		"_postman_id": "e9ec9439-e07f-4089-8ba3-331b5c727316",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -60,6 +60,36 @@
 						"membership",
 						"1",
 						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Conversations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjF9.yZ8sgeZ1DcjplfixhuSa7ilO6_w6CkVtmTxAJcckfFMZ_68Z71oJYYaSHrgd7LWYPSS31DBK_X1ox-YpGUcy4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/mail/show-messages",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"mail",
+						"show-messages"
 					]
 				}
 			},
