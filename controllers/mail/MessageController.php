@@ -3,9 +3,9 @@
 namespace humhub\modules\smartVillage\controllers\mail;
 
 use humhub\modules\rest\components\BaseController;
+use humhub\modules\mail\models\Message;
 use yii\db\Query;
 use Yii;
-use yii\data\Pagination;
 
 class MessageController extends BaseController
 {
@@ -16,15 +16,22 @@ class MessageController extends BaseController
      public function actionIndex(){
          $results = [];
 
-         $messagesQuery = new Query();
-         $messagesQuery->select("*")->from('message')
-                        ->leftJoin('user_message', 'user_message.message_id = message.id')
-                        ->where(['user_id' => Yii::$app->user->id]);
+         $messagesQuery = Message::find()
+             ->innerJoin('user_message','message_id = id')
+             ->where(['user_id' => Yii::$app->user->id]);
+
+         $pagination = $this->handlePagination($messagesQuery);
+
 
          foreach ($messagesQuery->all() as $message) {
              $results[] = self::getMessage($message);
          }
-         return $results;
+
+         if($results!=null){
+             return $this->returnPagination($messagesQuery, $pagination, $results);
+         }else{
+             return $this->returnError(400,"Conversation not found!");
+         }
      }
 
     /**
@@ -35,7 +42,8 @@ class MessageController extends BaseController
      * @param $message
      * @return array
      */
-      public static function getMessage($message){
+      public static function getMessage(Message $message){
+
           $checkNewMessage = new Query();
           $checkNewMessage->select("*")->from('message')
               ->leftJoin('user_message', 'user_message.message_id = message.id')
@@ -45,63 +53,16 @@ class MessageController extends BaseController
               ->andWhere(['message.id' => $message['id']]);
 
           $checkNewMessage = $checkNewMessage->count();
+
           return [
-              'id' => $message['id'],
-              'title' => $message['title'],
-              'created_at' => $message['created_at'],
-              'created_by' => $message['created_by'],
-              'updated_at' => $message['updated_at'],
-              'updated_by' => $message['updated_by'],
-              'status' => $checkNewMessage>0?'unread':'read',
-              'seen_at' => $message['last_viewed'],
+              'id' => $message->id,
+              'title' => $message->title,
+              'created_at' => $message->created_at,
+              'created_by' => $message->created_by,
+              'updated_at' => $message->updated_at,
+              'updated_by' => $message->updated_by,
+              'status' =>  $checkNewMessage>0?'unread':'read',
+              'seen_at' => $message->userMessage->last_viewed,
           ];
       }
-
-    /**
-     * Handles pagination
-     *
-     * @param Query $query
-     * @param int $limit
-     * @return Pagination the pagination
-     */
-      protected function handlePagination(Query $query, $limit = 100)
-    {
-        $limit = (int)Yii::$app->request->get('limit', $limit);
-        $page = (int)Yii::$app->request->get('page', 1);
-
-        if ($limit > 100) {
-            $limit = 100;
-        }
-
-        $page--;
-
-        $countQuery = clone $query;
-        $pagination = new Pagination(['totalCount' => $countQuery->count()]);
-        $pagination->setPage($page);
-        $pagination->setPageSize($limit);
-
-        $query->offset($pagination->offset);
-        $query->limit($pagination->limit);
-
-        return $pagination;
-    }
-
-      /**
-     * Generates pagination response
-     *
-     * @param Query $query
-     * @param Pagination $pagination
-     * @param $data array
-     * @return array
-     */
-      protected function returnPagination(Query $query, Pagination $pagination, $data)
-    {
-        return [
-            'total' => $pagination->totalCount,
-            'page' => $pagination->getPage() + 1,
-            'pages' => $pagination->getPageCount(),
-            'links' => $pagination->getLinks(),
-            'results' => $data,
-        ];
-    }
 }
