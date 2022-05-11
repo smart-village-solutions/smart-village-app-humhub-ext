@@ -19,7 +19,7 @@ class EntryController extends BaseController
      * step 1 : First it wil check the requested conversation is exists and current user has allowed to view the conversation.
      * step 2 : Then, it will check the any new unread message is present in that conversation.
      * step 3 : If yes, then it will update the conversation marked as read.
-     * step 4 : And finally, fetch the all messages of that conversation with conversation_status key.
+     * step 4 : And finally, fetch the all messages of that conversation with status key.
      *
      * @param $messageId
      * @return mixed
@@ -108,7 +108,7 @@ class EntryController extends BaseController
             'created_by' => $entry->created_by,
             'updated_at' => $entry->updated_at,
             'updated_by' => $entry->updated_by,
-            'conversation_status' => $messageMarkedStatus?'Read':'Already read'
+            'status' => $messageMarkedStatus?'read':'already read'
         ];
     }
 
