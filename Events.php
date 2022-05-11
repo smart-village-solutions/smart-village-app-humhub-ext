@@ -43,11 +43,11 @@ class Events
     public static function onRestApiAddRules()
     {
         /* @var \humhub\modules\rest\Module $restModule */
-        $restModule = Yii::$app->getModule('rest');
+        $restModule = Yii::$app->getModule('smartVillage');
         $restModule->addRules([
-            ['pattern' => 'auth/register/', 'route' => 'smartVillage/user/user/create', 'verb' => 'POST'],
+            ['pattern' => 'auth/register', 'route' => 'smartVillage/user/user/create', 'verb' => 'POST'],
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
-            ['pattern' => 'mail/show-messages', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
+            ['pattern' => 'mail', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
         ], 'smartVillage');
     }
 }
