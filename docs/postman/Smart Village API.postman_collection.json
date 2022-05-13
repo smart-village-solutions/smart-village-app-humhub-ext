@@ -93,6 +93,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Mark unread conversation as read",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjF9.yZ8sgeZ1DcjplfixhuSa7ilO6_w6CkVtmTxAJcckfFMZ_68Z71oJYYaSHrgd7LWYPSS31DBK_X1ox-YpGUcy4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v2/mail/5/entries",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"mail",
+						"5",
+						"entries"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
