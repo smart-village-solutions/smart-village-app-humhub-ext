@@ -114,6 +114,99 @@
 			]
 		},
 		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Get Posts by container id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/post/container/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"post",
+								"container",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}",
+								"disabled": true
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/post",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}"
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/post/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"post",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "List Conversations",
 			"request": {
 				"auth": {

@@ -55,6 +55,11 @@ class Events
             ['pattern' => 'calendar', 'route' => 'smartVillage/calendar/calendar/find', 'verb' => 'GET'],
             ['pattern' => 'calendar/entry/<Id:\d+>', 'route' => 'smartVillage/calendar/calendar/view', 'verb' => 'GET'],
             ['pattern' => 'calendar/container/<containerId:\d+>', 'route' => 'smartVillage/calendar/calendar/find-by-container', 'verb' => ['GET', 'HEAD']],
+
+            //post
+            ['pattern' => 'post', 'route' => 'smartVillage/post/post/find', 'verb' => 'GET'],
+            ['pattern' => 'post/<Id:\d+>', 'route' => 'smartVillage/post/post/view', 'verb' => 'GET'],
+            ['pattern' => 'post/container/<containerId:\d+>', 'route' => 'smartVillage/post/post/find-by-container', 'verb' => ['GET', 'HEAD']],
         ], 'smartVillage');
     }
 }
