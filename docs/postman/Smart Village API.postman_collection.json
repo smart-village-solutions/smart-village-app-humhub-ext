@@ -207,6 +207,78 @@
 			]
 		},
 		{
+			"name": "Space",
+			"item": [
+				{
+					"name": "Get all spaces",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}",
+								"disabled": true
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get space by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}"
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "List Conversations",
 			"request": {
 				"auth": {
