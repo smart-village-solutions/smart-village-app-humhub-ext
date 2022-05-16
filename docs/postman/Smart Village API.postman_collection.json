@@ -6,6 +6,114 @@
 	},
 	"item": [
 		{
+			"name": "Calendar",
+			"item": [
+				{
+					"name": "Get all calendars entries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}",
+								"disabled": true
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/calendar",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get calendars entries by container",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}",
+								"disabled": true
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/calendar/container/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"calendar",
+								"container",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get calendar entry by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "admin",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_ADMIN}}"
+							},
+							{
+								"description": "test",
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{AUTHORIZATION_TEST}}",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/calendar/entry/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"calendar",
+								"entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "List Conversations",
 			"request": {
 				"auth": {
