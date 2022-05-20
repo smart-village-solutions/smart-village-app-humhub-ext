@@ -60,25 +60,13 @@ class EntryController extends BaseController
      * This function will mark unread conversation as read.
      *
      * Working Flow:
-     * step 1 : First, it will update the updated_at and updated_by column of message table.
-     * step 2 : Second, it will update the last_viewed column value of user_message table.
-     * step 3 : And finally, if all values will be updated then response will be sent true, otherwise false.
+     *  It will update the last_viewed column value of user_message table.
+     *  And if, it will not update value then it will throw an error.
      *
      * @param $messageId
      * @return bool
      */
      public function addReadStatus($messageId){
-        //Update the updated_at  column value in message table
-        $message = Message::findOne(['id'=>$messageId]);
-        if(isset($message) && !empty($message)) {
-            $message->updated_at = date('Y-m-d H:i:s');
-
-            if (!$message->save()) {
-                Yii::error('Could not update the conversation status.', 'api');
-                return $this->returnError(500, 'Message update failed!');
-            }
-        }
-
             //Update the last_viewed in user_message table
              $userMessage = UserMessage::findOne(['user_id'=> Yii::$app->user->id,'message_id'=> $messageId]);
              if(isset($userMessage) && !empty($userMessage)){
