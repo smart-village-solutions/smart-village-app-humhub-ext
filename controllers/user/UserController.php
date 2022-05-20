@@ -2,6 +2,8 @@
 
 namespace humhub\modules\smartVillage\controllers\user;
 
+use humhub\modules\legal\models\Page;
+use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\smartVillage\components\AuthBaseController;
 use humhub\modules\smartVillage\controllers\user\GroupController;
 use humhub\modules\user\models\Password;
@@ -110,10 +112,48 @@ class UserController extends AuthBaseController
 
         $jwt = JWT::encode($data, $config->jwtKey, 'HS512');
 
+        //Accept the privacy policy page
+        $this->acceptPrivacy($user);
+
         return $this->returnSuccess('Success', 200, [
             'auth_token' => $jwt,
             'expired_at' => (!isset($data['exp'])) ? 0 : $data['exp']
         ]);
 
     }
+
+    /**
+     * Accept the privacy policy, After the login
+     * We are sending dataPrivacyCheck key with status(true/false), if it is true only then accept the privacy policy
+     *
+     * @param $user
+     * @return array|bool|void
+     */
+    public function acceptPrivacy($user){
+        //Accept the privacy policy
+        $model = new RegistrationChecks();
+        $model->load(Yii::$app->request->getBodyParam("legal", []), '');
+
+        //Check the dataPrivacyCheck key is true/false
+        if($model->dataPrivacyCheck){
+
+            //Check privacy policy is enabled or not
+            if($model->showPrivacyCheck()){
+
+                //Find the privacy policy page
+                $page = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
+
+                if (!isset($page) || $page === null) {
+                    throw new HttpException('404', 'Could not find privacy policy page!');
+                }
+                //Accept the privacy policy by setting the values
+                $module = Yii::$app->getModule('legal');
+                $module->settings->user($user)->set(RegistrationChecks::SETTING_KEY_PRIVACY, true);
+                $module->settings->user($user)->set(RegistrationChecks::SETTING_KEY_PRIVACY . 'Time', time());
+            }
+
+            return true;
+        }
+    }
+
 }
