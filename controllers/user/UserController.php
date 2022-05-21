@@ -112,8 +112,12 @@ class UserController extends AuthBaseController
 
         $jwt = JWT::encode($data, $config->jwtKey, 'HS512');
 
-        //Accept the privacy policy page
-        $this->acceptPrivacy($user);
+        //Check the legal module is active or not
+        $module = Yii::$app->getModule('legal');
+        if($module !== null){
+            //Accept the privacy policy page
+            $this->acceptPrivacy($user);
+        }
 
         return $this->returnSuccess('Success', 200, [
             'auth_token' => $jwt,
