@@ -8,7 +8,7 @@ use humhub\modules\rest\definitions\SpaceDefinitions;
 
 class SpaceController extends AuthBaseController
 {
-    public function actionIndex(){
+    public function actionFind(){
         $results = [];
         $query = Space::find()->where(['visibility' => Space::VISIBILITY_ALL]);
 

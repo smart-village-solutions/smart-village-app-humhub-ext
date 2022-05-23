@@ -62,7 +62,7 @@ class Events
             ['pattern' => 'post/container/<containerId:\d+>', 'route' => 'smartVillage/post/post/find-by-container', 'verb' => ['GET', 'HEAD']],
 
             //space
-            ['pattern' => 'space', 'route' => 'smartVillage/space/space/index', 'verb' => 'GET'],
+            ['pattern' => 'space', 'route' => 'smartVillage/space/space/find', 'verb' => 'GET'],
             ['pattern' => 'space/<spaceId:\d+>', 'route' => 'smartVillage/space/space/view', 'verb' => 'GET'],
         ], 'smartVillage');
     }
