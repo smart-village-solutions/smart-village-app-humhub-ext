@@ -29,6 +29,21 @@ class UserController extends AuthBaseController
      * @return array
      */
     public function actionCreate(){
+        //Check the legal module is active or not
+        $legalModule = Yii::$app->getModule('legal');
+        if($legalModule !== null){
+            $model = new RegistrationChecks();
+            $legalKey = $model->load(Yii::$app->request->getBodyParam("legal", []), '');
+
+            //check the legal key is present or not
+            if(!$legalKey){
+                return $this->returnError(400,"Registration failed, legal module is activated but key is missing");
+            }
+            //check the dataPrivacyCheck key is true or false
+            if(!$model->dataPrivacyCheck){
+                return $this->returnError(400,"Registration failed,dataPrivacyCheck key is false");
+            }
+        }
         $user = new User();
         $user->scenario = 'editAdmin';
         $user->load(Yii::$app->request->getBodyParam("account", []), '');
@@ -67,7 +82,7 @@ class UserController extends AuthBaseController
                 Yii::$app->runAction('smartVillage/user/group/member-add-without-auth',['id'=>GroupController::USER_DEFAULT_GROUP_ID,'userId'=>$user->id]);
 
                 //Login New User with username and password
-                return $this->userLogin($user->username,$password->newPassword);
+                return $this->userLogin($user->username,$password->newPassword,$legalModule);
             }
         }
 
@@ -84,7 +99,7 @@ class UserController extends AuthBaseController
      * @param $password
      * @return array
      */
-    public function userLogin($username,$password){
+    public function userLogin($username,$password,$legalModule){
 
         $user = AuthController::authByUserAndPassword($username,$password); //Authenticate the user
 
@@ -113,8 +128,7 @@ class UserController extends AuthBaseController
         $jwt = JWT::encode($data, $config->jwtKey, 'HS512');
 
         //Check the legal module is active or not
-        $module = Yii::$app->getModule('legal');
-        if($module !== null){
+        if($legalModule!==null){
             //Accept the privacy policy page
             $this->acceptPrivacy($user);
         }
@@ -138,9 +152,6 @@ class UserController extends AuthBaseController
         $model = new RegistrationChecks();
         $model->load(Yii::$app->request->getBodyParam("legal", []), '');
 
-        //Check the dataPrivacyCheck key is true/false
-        if($model->dataPrivacyCheck){
-
             //Check privacy policy is enabled or not
             if($model->showPrivacyCheck()){
 
@@ -157,7 +168,7 @@ class UserController extends AuthBaseController
             }
 
             return true;
-        }
+
     }
 
 }
