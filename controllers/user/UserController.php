@@ -2,6 +2,8 @@
 
 namespace humhub\modules\smartVillage\controllers\user;
 
+use humhub\modules\legal\models\Page;
+use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\smartVillage\components\AuthBaseController;
 use humhub\modules\smartVillage\controllers\user\GroupController;
 use humhub\modules\user\models\Password;
@@ -27,6 +29,28 @@ class UserController extends AuthBaseController
      * @return array
      */
     public function actionCreate(){
+        //Check the legal module is active or not
+        $legalModule = Yii::$app->getModule('legal');
+        if($legalModule !== null){
+            $model = new RegistrationChecks();
+            $legalKey = $model->load(Yii::$app->request->getBodyParam("legal", []), '');
+
+            //check the legal key is present or not
+            if(!$legalKey){
+                return $this->returnError(400,"Registration failed, legal module is activated but key is missing");
+            }
+
+            //Only allow 1, true, false and 0 value of dataPrivacyCheck key
+            $checkKeyValue = array(1,true,false,0);
+            if(!in_array($model->dataPrivacyCheck,$checkKeyValue,true)){
+                return $this->returnError(400,"Invalid value of dataPrivacyCheck key");
+            }
+
+            //check if the value of dataPrivacyCheck key is false
+            if(!$model->dataPrivacyCheck){
+                return $this->returnError(400,"Registration failed, dataPrivacyCheck key is false");
+            }
+        }
         $user = new User();
         $user->scenario = 'editAdmin';
         $user->load(Yii::$app->request->getBodyParam("account", []), '');
@@ -65,7 +89,7 @@ class UserController extends AuthBaseController
                 Yii::$app->runAction('smartVillage/user/group/member-add-without-auth',['id'=>GroupController::USER_DEFAULT_GROUP_ID,'userId'=>$user->id]);
 
                 //Login New User with username and password
-                return $this->userLogin($user->username,$password->newPassword);
+                return $this->userLogin($user->username,$password->newPassword,$legalModule);
             }
         }
 
@@ -82,7 +106,7 @@ class UserController extends AuthBaseController
      * @param $password
      * @return array
      */
-    public function userLogin($username,$password){
+    public function userLogin($username,$password,$legalModule){
 
         $user = AuthController::authByUserAndPassword($username,$password); //Authenticate the user
 
@@ -110,10 +134,48 @@ class UserController extends AuthBaseController
 
         $jwt = JWT::encode($data, $config->jwtKey, 'HS512');
 
+        //Check the legal module is active or not
+        if($legalModule!==null){
+            //Accept the privacy policy page
+            $this->acceptPrivacy($user);
+        }
+
         return $this->returnSuccess('Success', 200, [
             'auth_token' => $jwt,
             'expired_at' => (!isset($data['exp'])) ? 0 : $data['exp']
         ]);
 
     }
+
+    /**
+     * Accept the privacy policy, After the login
+     * We are sending dataPrivacyCheck key with status(true/false), if it is true only then accept the privacy policy
+     *
+     * @param $user
+     * @return array|bool|void
+     */
+    public function acceptPrivacy($user){
+        //Accept the privacy policy
+        $model = new RegistrationChecks();
+        $model->load(Yii::$app->request->getBodyParam("legal", []), '');
+
+            //Check privacy policy is enabled or not
+            if($model->showPrivacyCheck()){
+
+                //Find the privacy policy page
+                $page = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
+
+                if (!isset($page) || $page === null) {
+                    throw new HttpException('404', 'Could not find privacy policy page!');
+                }
+                //Accept the privacy policy by setting the values
+                $module = Yii::$app->getModule('legal');
+                $module->settings->user($user)->set(RegistrationChecks::SETTING_KEY_PRIVACY, true);
+                $module->settings->user($user)->set(RegistrationChecks::SETTING_KEY_PRIVACY . 'Time', time());
+            }
+
+            return true;
+
+    }
+
 }
