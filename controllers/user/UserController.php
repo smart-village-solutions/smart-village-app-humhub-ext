@@ -39,9 +39,16 @@ class UserController extends AuthBaseController
             if(!$legalKey){
                 return $this->returnError(400,"Registration failed, legal module is activated but key is missing");
             }
-            //check the dataPrivacyCheck key is true or false
+
+            //Only allow 1, true, false and 0 value of dataPrivacyCheck key
+            $checkKeyValue = array(1,true,false,0);
+            if(!in_array($model->dataPrivacyCheck,$checkKeyValue,true)){
+                return $this->returnError(400,"Invalid value of dataPrivacyCheck key");
+            }
+
+            //check if the value of dataPrivacyCheck key is false
             if(!$model->dataPrivacyCheck){
-                return $this->returnError(400,"Registration failed,dataPrivacyCheck key is false");
+                return $this->returnError(400,"Registration failed, dataPrivacyCheck key is false");
             }
         }
         $user = new User();
