@@ -50,6 +50,20 @@ class Events
             ['pattern' => 'mail', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
             //mark unread message of conversation as read
             ['pattern' => 'mail/<messageId:\d+>/entries', 'route' => 'smartVillage/mail/entry/index', 'verb' => 'GET'],
+
+            //calendar
+            ['pattern' => 'calendar', 'route' => 'smartVillage/calendar/calendar/find', 'verb' => 'GET'],
+            ['pattern' => 'calendar/entry/<Id:\d+>', 'route' => 'smartVillage/calendar/calendar/view', 'verb' => 'GET'],
+            ['pattern' => 'calendar/container/<containerId:\d+>', 'route' => 'smartVillage/calendar/calendar/find-by-container', 'verb' => ['GET', 'HEAD']],
+
+            //post
+            ['pattern' => 'post', 'route' => 'smartVillage/post/post/find', 'verb' => 'GET'],
+            ['pattern' => 'post/<Id:\d+>', 'route' => 'smartVillage/post/post/view', 'verb' => 'GET'],
+            ['pattern' => 'post/container/<containerId:\d+>', 'route' => 'smartVillage/post/post/find-by-container', 'verb' => ['GET', 'HEAD']],
+
+            //space
+            ['pattern' => 'space', 'route' => 'smartVillage/space/space/find', 'verb' => 'GET'],
+            ['pattern' => 'space/<spaceId:\d+>', 'route' => 'smartVillage/space/space/view', 'verb' => 'GET'],
         ], 'smartVillage');
     }
 }
