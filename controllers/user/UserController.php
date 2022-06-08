@@ -172,8 +172,8 @@ class UserController extends AuthBaseController
         // User requested registration link by its self
         if ($invite->source == Invite::SOURCE_SELF) {
             $mail = Yii::$app->mailer->compose([
-                'html' => '@humhub/modules/smartVillageAPI/views/email_template/UserInviteSelf',
-                'text' => '@humhub/modules/smartVillageAPI/views/email_template/plain_text/UserInviteSelf'
+                'html' => '@humhub/modules/smart-village-app-humhub-ext/views/email_template/UserInviteSelf',
+                'text' => '@humhub/modules/smart-village-app-humhub-ext/views/email_template/plain_text/UserInviteSelf'
             ], [
                 'token' => $invite->token,
             ]);
