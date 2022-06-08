@@ -136,11 +136,6 @@ class UserController extends AuthBaseController
         }
 
         $invite->token = $this->generateCode();
-        $checkCodeAlredyExist = Invite::find()->where(['token'=>$invite->token])->one();
-
-        if($checkCodeAlredyExist!=null){
-            $invite->token = $this->generateCode();
-        }
 
         //We set validation false because we are not fill recaptcha value in API
         if($invite->save(false)){
@@ -153,8 +148,13 @@ class UserController extends AuthBaseController
 
     public function generateCode()
     {
-        return random_int(100000, 999999);
-    }
+        $code = random_int(100000, 999999);
+        $checkCodeExist = Invite::find()->where(['token'=>$code])->one();
+        if($checkCodeExist!=null) {
+            $this->generateCode();
+         }
+        return $code;
+        }
 
     /**
      * Send code to user email address
