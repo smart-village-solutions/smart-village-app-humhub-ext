@@ -84,6 +84,9 @@ class Events
             ['pattern' => 'link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/edit-link', 'verb' => ['PUT','PATCH']],
             ['pattern' => 'delete/link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/delete-link', 'verb' => 'DELETE'],
             ['pattern' => 'link/category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/link/link-category', 'verb' => 'GET'],
+
+            //E-mail and Web Notification Setting
+            ['pattern' => 'settings', 'route' => 'smartVillage/setting/notification/save-settings', 'verb' => 'PUT'],
         ], 'smartVillage');
     }
 }
