@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a7d4eddd-ac59-4400-92b3-e8c8ad51ba97",
+		"_postman_id": "626b3ce6-da9a-4c15-93ee-ab6f3d2306c8",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -393,6 +393,35 @@
 						"mail",
 						"5",
 						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"signup\":{\r\n        \"email\" : \"gk29.dev@gmail.com\",\r\n        \"token\" : \"798523\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v2/auth/signup",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"auth",
+						"signup"
 					]
 				}
 			},
