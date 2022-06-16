@@ -34,7 +34,7 @@ use yii\helpers\Html;
                                                         style=" background-color:<?= Yii::$app->view->theme->variable('background-color-main', '#fff') ?>; background-clip: padding-box; font-size:26px; font-family: <?= Yii::$app->view->theme->variable('mail-font-family', DefaultMailStyle::DEFAULT_FONT_FAMILY) ?>; text-align:center; font-weight: 300; padding-left:18px; padding-right:18px; ">
 
                                                         <span style="color:  <?= Yii::$app->view->theme->variable('text-color-highlight', '#555') ?>; font-weight: 300;">
-                                                            <?= Yii::t('UserModule.base', 'Welcome to %appName%', ['%appName%' => '<strong>' . Html::encode(Yii::$app->name) . '</strong>']); ?>
+                                                            <?= Yii::t('UserModule.base', 'Herzlich Willkommen auf der Ehrenamtsplattform in der Herzberg-App!', []); ?>
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -97,7 +97,7 @@ use yii\helpers\Html;
                                                 <tr>
                                                     <td style="font-size: 14px; line-height: 22px; font-family: <?= Yii::$app->view->theme->variable('mail-font-family', DefaultMailStyle::DEFAULT_FONT_FAMILY) ?>; color:<?= Yii::$app->view->theme->variable('text-color-main', '#777') ?>; font-weight:300; text-align:center; ">
 
-                                                        <?php echo Yii::t('UserModule.base', 'Welcome to %appName%. Please enter the code below to proceed with your registration.', ['%appName%' => Html::encode(Yii::$app->name)]); ?>
+                                                        <?php echo Yii::t('UserModule.base', 'Um die Registrierung für die Ehrenamtsplattform abzuschließen, geben Sie bitte den Zahlencode in das entsprechende Feld in der Herzberg-App ein.', []); ?>
 
                                                     </td>
                                                 </tr>

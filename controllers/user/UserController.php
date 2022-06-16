@@ -178,7 +178,7 @@ class UserController extends AuthBaseController
                 'token' => $invite->token,
             ]);
             $mail->setTo($invite->email);
-            $mail->setSubject(Yii::t('UserModule.base', 'Welcome to %appName%', ['%appName%' => Yii::$app->name]));
+            $mail->setSubject(Yii::t('UserModule.base', 'Herzlich Willkommen auf der Ehrenamtsplattform in der Herzberg-App!', []));
             $mail->send();
         }
     }

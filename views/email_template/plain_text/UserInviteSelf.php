@@ -6,12 +6,12 @@ use yii\helpers\Html;
 /* @var $token integer */
 
 ?>
-<?= mb_strtoupper(Yii::t('UserModule.base', 'Welcome to %appName%', ['%appName%' => Yii::$app->name])) ?>
+<?= mb_strtoupper(Yii::t('UserModule.base', 'Herzlich Willkommen auf der Ehrenamtsplattform in der Herzberg-App!', [])) ?>
 
 
 <?= Yii::t('UserModule.base',
-    'Welcome to %appName%. Please enter the code below to proceed with your registration.',
-    ['%appName%' => Yii::$app->name]); ?>
+    'Um die Registrierung für die Ehrenamtsplattform abzuschließen, geben Sie bitte den Zahlencode in das entsprechende Feld in der Herzberg-App ein.',
+    []); ?>
 
 
 <?= Yii::t('UserModule.base', '%code%',['%code%' => $token]) ?>
