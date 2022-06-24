@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.3]
+
+Double opt-in for registration and ability to read public contents as guests
+
+### Added
+
+- added double opt-in process in registration
+  - integrated a creation for one time codes that are mailed during registration
+  - 1. `/auth/register` to enter account data
+  - 2. `auth/signup` to enter one time code
+- added ability to read public contents without login through API
+  - guest users can read calendar, post and space data without login or bearer token
+
+### Changed
+
+- hid "smartvillage" from web menu
+
 ## [v0.2]
 
 New endpoint for space membership requests, updated conversations to have a read/unread status and versioning
