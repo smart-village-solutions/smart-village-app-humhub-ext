@@ -39,3 +39,11 @@ Provides a RESTful API to the HumHub installation https://github.com/humhub/rest
 ### Link list
 
 Adds a link list to spaces or user profiles https://github.com/humhub-contrib/linklist
+
+## Changelog
+
+Have a look at the [changelog](./CHANGELOG.md) to be up to date with the development process.
+
+---
+
+###### Version: 0.3
