@@ -66,6 +66,9 @@ class Events
             //space
             ['pattern' => 'space', 'route' => 'smartVillage/space/space/find', 'verb' => 'GET'],
             ['pattern' => 'space/<spaceId:\d+>', 'route' => 'smartVillage/space/space/view', 'verb' => 'GET'],
+
+            //space membership
+            ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>', 'route' => 'smartVillage/space/membership/create', 'verb' => 'POST'],
         ], 'smartVillage');
     }
 }

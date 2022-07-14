@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "626b3ce6-da9a-4c15-93ee-ab6f3d2306c8",
+		"_postman_id": "6083c583-3c4d-4eda-91b9-5fec0343fe5b",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -271,6 +271,38 @@
 								"v2",
 								"space",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Membership-Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NTc2Mjg2NzAsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvaHVtaHViIiwibmJmIjoxNjU3NjI4NjcwLCJ1aWQiOjMxLCJlbWFpbCI6ImdhdXJhdi5oYW5keXNvbHZlckBnbWFpbC5jb20ifQ.0Yb9w7LhMCXoUzX5uxK8V1UqH3TdGviE3buNzrLv-jLSM7k2MiBzeH_COapAHtEKVPTqQD5ItHOUqEcGw2Fx4Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space/2/membership/31",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space",
+								"2",
+								"membership",
+								"31"
 							]
 						}
 					},
