@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.4]
+
+New endpoints for the link list module and ability to join spaces with join policy 2 (open)
+
+### Added
+
+- added endpoints for category requests `GET /categories`, `POST /category`, `GET /category/{id}`, `PUT/PATCH /category/{id}` and `DELETE delete/category/{id}`
+- added endpoints for link requests `GET /links`, `POST /link`, `GET /link/{id}`, `PUT/PATCH /link/{id}`, `DELETE delete/link/{id}` and `GET /link/category/{id}`
+- added `POST /space/{id}/membership/<userid>` endpoint to join open spaces with all user roles
+
 ## [v0.3]
 
 Double opt-in for registration and ability to read public contents as guests
