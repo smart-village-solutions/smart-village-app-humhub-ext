@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6083c583-3c4d-4eda-91b9-5fec0343fe5b",
+		"_postman_id": "35a430e5-bbeb-41b2-8286-2679f2c06458",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -758,6 +758,79 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Setting",
+			"item": [
+				{
+					"name": "Notification Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NTQ1OTk4MTcsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvaHVtaHViIiwibmJmIjoxNjU0NTk5ODE3LCJ1aWQiOjMxLCJlbWFpbCI6ImdhdXJhdi5oYW5keXNvbHZlckBnbWFpbC5jb20ifQ.ZS0Sg9Y7VostnIsiAj63tRwoR6wTLPCjxdW53i0SnkDiqV210FcFMgfXI1X6NGKLJAQVHfLEze9L6DNyfOIGZw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"settings\":\r\n    {\r\n        \"spaces\":[\r\n            1\r\n        ],\r\n        \"email\":{\r\n          \"calendar_email\": true,\r\n           \"mail_email\": false,\r\n    \"mail_conversation_email\": false,\r\n           \"comments_email\": false,\r\n        \"content_created_email\":false,\r\n            \"like_email\":false,\r\n          \"space_member_email\":false,\r\n          \"followed_email\": false,\r\n          \"mentioned_email\": true\r\n        },\r\n        \"web\":{\r\n           \"calendar_web\": true,\r\n           \"mail_web\": false,\r\n    \"mail_conversation_web\": false,\r\n           \"comments_web\": false,\r\n        \"content_created_web\":false,\r\n            \"like_web\":false,\r\n          \"space_member_web\":false,\r\n          \"followed_web\": false,\r\n          \"mentioned_web\": true\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v2/settings",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of Notification Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/setting/notification",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"setting",
+								"notification"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
