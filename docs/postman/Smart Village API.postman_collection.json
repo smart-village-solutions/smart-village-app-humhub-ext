@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "60569f18-7f41-45ed-b2d3-958f5b0afa74",
+		"_postman_id": "35a430e5-bbeb-41b2-8286-2679f2c06458",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -797,6 +797,36 @@
 								"api",
 								"v2",
 								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of Notification Setting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/setting/notification",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"setting",
+								"notification"
 							]
 						}
 					},

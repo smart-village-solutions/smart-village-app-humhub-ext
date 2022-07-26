@@ -14,6 +14,50 @@ use yii;
 class NotificationController extends BaseController
 {
     /**
+     * @return array
+     * @throws \Throwable
+     * Show the list of  web as well as email notification setting of the user
+     */
+    public function actionIndex(){
+        $form = new NotificationSettings(['user' => Yii::$app->user->getIdentity()]);
+        $result = [];
+        foreach($form->categories() as $category){
+            //List down all category name like calendar, mail, conversation etc.
+            $categoriesData = $category->getTitle();
+            $result[] = $categoriesData;
+
+            foreach($form->targets() as $target) {
+                //Get the name of the setting, It will return the setting name like this(NotificationSettings[settings][notification.admin_web])
+                $formName = $form->getSettingFormname($category, $target);
+
+                //Get the status of setting i.e true(1) or false(0)
+                $categoryEnabled = $target->isCategoryEnabled($category, $form->user);
+
+                //List down the all notification setting name
+                $settingNames = array("admin_web","admin_email","calendar_web","calendar_email","mail_web","mail_email","mail_conversation_web",
+                    "mail_conversation_email","comments_web",
+                    "comments_email","content_created_web","content_created_email","like_web","like_email",
+                    "space_member_web","space_member_email","followed_web","followed_email","mentioned_web","mentioned_email");
+
+                foreach($settingNames as $name){
+                    //Check the setting name we are getting from $fromName is matching in $settingNames or not
+                    if(strpos($formName,$name)!=FALSE){
+                        $result[] = self::getData($name,$categoryEnabled);
+                    }
+                }
+            }
+        }
+        return $result;
+
+    }
+    public static function getData($name,$status){
+        return [
+            $name => $status,
+        ];
+    }
+
+
+    /**
      * @return array|int[]
      * Save the setting of notification for space, email and  web
      *

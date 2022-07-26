@@ -86,6 +86,7 @@ class Events
             ['pattern' => 'link/category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/link/link-category', 'verb' => 'GET'],
 
             //E-mail and Web Notification Setting
+            ['pattern' => 'setting/notification', 'route' => 'smartVillage/setting/notification/index', 'verb' => 'GET'],
             ['pattern' => 'settings', 'route' => 'smartVillage/setting/notification/save-settings', 'verb' => 'PUT'],
         ], 'smartVillage');
     }
