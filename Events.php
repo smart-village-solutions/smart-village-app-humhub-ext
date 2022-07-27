@@ -75,14 +75,14 @@ class Events
             ['pattern' => 'category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/view', 'verb' => 'GET'],
             ['pattern' => 'category', 'route' => 'smartVillage/linklist/category/create-category', 'verb' => 'POST'],
             ['pattern' => 'category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/edit-category', 'verb' => ['PUT','PATCH']],
-            ['pattern' => 'delete/category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/delete-category', 'verb' => 'DELETE'],
+            ['pattern' => 'category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/delete-category', 'verb' => 'DELETE'],
 
             //linklist links
             ['pattern' => 'links', 'route' => 'smartVillage/linklist/link/index', 'verb' => 'GET'],
             ['pattern' => 'link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/view', 'verb' => 'GET'],
             ['pattern' => 'link', 'route' => 'smartVillage/linklist/link/create-link', 'verb' => 'POST'],
             ['pattern' => 'link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/edit-link', 'verb' => ['PUT','PATCH']],
-            ['pattern' => 'delete/link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/delete-link', 'verb' => 'DELETE'],
+            ['pattern' => 'link/<linkId:\d+>', 'route' => 'smartVillage/linklist/link/delete-link', 'verb' => 'DELETE'],
             ['pattern' => 'link/category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/link/link-category', 'verb' => 'GET'],
         ], 'smartVillage');
     }
