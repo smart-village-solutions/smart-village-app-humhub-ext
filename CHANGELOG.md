@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.4.1]
+
+Uniform routes for link list delete endpoints
+
+### Changed
+
+- removed the "delete/"s from `DELETE` endpoints of link list routes
+
 ## [v0.4]
 
 New endpoints for the link list module and ability to join spaces with join policy 2 (open)
