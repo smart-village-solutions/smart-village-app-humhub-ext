@@ -37,7 +37,7 @@ return array (
   'Invalid date or time format!' => 'Datumsformat ungültig!',
   'Invalid event type id selected.' => 'Ungültige Kategorie-ID ausgewählt',
   'Location' => 'Ort',
-  'Maximum number of participants' => 'Maximale zhal Interessierte',
+  'Maximum number of participants' => 'Maximale Anzahl Interessierte',
   'Maybe attending users' => 'Eventuell Interessierte Benutzer',
   'Monday' => 'Montag',
   'Next' => 'Weiter',
