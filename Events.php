@@ -57,6 +57,11 @@ class Events
             ['pattern' => 'mail/<messageId:\d+>/entries', 'route' => 'smartVillage/mail/entry/index', 'verb' => 'GET'],
 
             //calendar
+            //Recurring Events endpoints
+            ['pattern' => 'calendar/recurring', 'route' => 'smartVillage/calendar/recurring-events/index', 'verb' => 'GET'],
+            ['pattern'=> 'calendar/container/<containerId:\d+>/recurring', 'route'=> 'smartVillage/calendar/recurring-events/recurring-container','verb'=>'GET'],
+            ['pattern' => 'calendar/entry/<Id:\d+>/recurring','route' => 'smartVillage/calendar/recurring-events/recurring-entry','verb'=>'GET'],
+
             ['pattern' => 'calendar', 'route' => 'smartVillage/calendar/calendar/find', 'verb' => 'GET'],
             ['pattern' => 'calendar/entry/<Id:\d+>', 'route' => 'smartVillage/calendar/calendar/view', 'verb' => 'GET'],
             ['pattern' => 'calendar/container/<containerId:\d+>', 'route' => 'smartVillage/calendar/calendar/find-by-container', 'verb' => ['GET', 'HEAD']],

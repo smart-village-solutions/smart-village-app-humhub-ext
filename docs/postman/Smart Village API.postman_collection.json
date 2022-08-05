@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "671f8086-1b87-423e-a0c3-9d1463466363",
+		"_postman_id": "1b674f22-95df-44a5-8d85-9979081e9287",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17408055"
@@ -9,6 +9,105 @@
 		{
 			"name": "Calendar",
 			"item": [
+				{
+					"name": "Recurring Events",
+					"item": [
+						{
+							"name": "Get all calendar recurring events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/v2/calendar/recurring?start_date=2022-08-01&end_date=2022-09-01",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"calendar",
+										"recurring"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2022-08-01"
+										},
+										{
+											"key": "end_date",
+											"value": "2022-09-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get calendar recurring events by container",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/v2/calendar/container/1/recurring?start_date=2022-08-01&end_date=2022-09-01",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"calendar",
+										"container",
+										"1",
+										"recurring"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2022-08-01"
+										},
+										{
+											"key": "end_date",
+											"value": "2022-09-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get calendar recurring events by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/v2/calendar/entry/24/recurring?start_date=2022-07-30&end_date=2022-09-01",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"calendar",
+										"entry",
+										"24",
+										"recurring"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2022-07-30"
+										},
+										{
+											"key": "end_date",
+											"value": "2022-09-01"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Get all calendars entries",
 					"request": {
