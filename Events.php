@@ -70,6 +70,9 @@ class Events
             //space membership
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>', 'route' => 'smartVillage/space/membership/create', 'verb' => 'POST'],
 
+            //Get all the members list of a space (issue-45 new endpoint)
+            ['pattern'=>'space/<spaceId:\d+>/membership', 'route' => 'smartVillage/space/membership/index', 'verb' => 'GET'],
+
             //linklist category
             ['pattern' => 'categories', 'route' => 'smartVillage/linklist/category/index', 'verb' => 'GET'],
             ['pattern' => 'category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/view', 'verb' => 'GET'],
