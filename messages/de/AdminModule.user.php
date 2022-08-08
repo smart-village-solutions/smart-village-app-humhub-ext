@@ -70,7 +70,7 @@ return array (
   'Group Manager' => 'Gruppenmanager',
   'Group not found!' => 'Gruppe nicht gefunden!',
   'Group user not found!' => 'Benutzer in Gruppe nicht gefunden!',
-  'Groups' => 'Gruppen und Vereine',
+  'Groups' => 'Gruppen',
   'Hello {displayName},<br><br>
 Your account has been activated.<br><br>
 Click here to login:<br>

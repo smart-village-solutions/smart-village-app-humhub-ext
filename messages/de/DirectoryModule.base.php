@@ -16,7 +16,7 @@ return [
     'Can access the directory section.' => 'Kann auf den Verzeichnisbereich zugreifen.',
     'Directory' => 'Verzeichnis',
     'Follows somebody' => 'Folgt jemandem',
-    'Groups' => 'Gruppen und Vereine',
+    'Groups' => 'Gruppen',
     'Members' => 'Mitglieder',
     'Most members' => 'Meiste Mitglieder',
     'No members found!' => 'Keine Mitglieder gefunden!',

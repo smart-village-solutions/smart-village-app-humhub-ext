@@ -106,7 +106,7 @@ return array (
   'Shown on About Page.' => 'Wird auf Informationsseite angezeigt.',
   'Sorry, you are not allowed to leave this space!' => 'Sorry, aber du kannst diesen Space nicht verlassen.',
   'Sorting' => 'Sortierung',
-  'Space' => 'Space',
+  'Space' => 'Gruppen und Vereine',
   'Space Visibility' => 'Space Sichtbarkeit',
   'Space directory' => 'Space-Verzeichnis',
   'Space is invisible!' => 'Space ist unsichtbar!',

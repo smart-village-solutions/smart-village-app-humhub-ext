@@ -25,7 +25,7 @@ return array (
   'Design' => 'Design',
   'Files' => 'Dateien',
   'General' => 'Allgemein',
-  'Groups' => 'Gruppen und Vereine',
+  'Groups' => 'Gruppen',
   'Groups (Note: The Administrator group of this user can\'t be managed with your permissions)' => 'Gruppen (Hinweis: Die Administratorgruppe dieses Benutzers kann nicht mit deinen Berechtigungen verwaltet werden).',
   'Information' => 'Informationen',
   'Invite' => 'Einladen',
