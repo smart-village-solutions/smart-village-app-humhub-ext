@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1c7c6404-d427-4d15-8dfc-abef781d1306",
+		"_postman_id": "671f8086-1b87-423e-a0c3-9d1463466363",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17408055"
@@ -925,6 +925,26 @@
 						"v2",
 						"auth",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v2/user/31",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"user",
+						"31"
 					]
 				}
 			},
