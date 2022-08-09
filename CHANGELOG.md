@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.4.3]
+
+Allow more accesses without admin rights and some wordings
+
+### Changed
+
+- added more v2 endpoints to allow wider access for registered users
+- added German locale files for space wording overrides
+
 ## [v0.4.2]
 
 Change wording of "Teilnehmer" to "Interessierte"
