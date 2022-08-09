@@ -18,7 +18,7 @@ class CalendarController extends AuthBaseController
      * Get all the entries of calendar
      */
     public function actionFind(){
-        $query = CalendarEntry::find()->joinWith('content')->orderBy(['content.created_at' => SORT_DESC])->readable();
+        $query = CalendarEntry::find()->joinWith('content')->orderBy(['content.created_at' => SORT_DESC]);
 
         $pagination = $this->handlePagination($query);
 
@@ -62,7 +62,7 @@ class CalendarController extends AuthBaseController
         }
 
         /** @var ActiveQueryContent $query */
-        $query = CalendarEntry::find()->contentContainer($contentContainer->getPolymorphicRelation())->orderBy(['content.created_at' => SORT_DESC])->readable();
+        $query = CalendarEntry::find()->contentContainer($contentContainer->getPolymorphicRelation())->orderBy(['content.created_at' => SORT_DESC]);
 
         ContentDefinitions::handleTopicsParam($query, $containerId);
 
