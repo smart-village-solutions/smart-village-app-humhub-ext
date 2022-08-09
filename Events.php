@@ -48,6 +48,9 @@ class Events
             ['pattern' => 'auth/register', 'route' => 'smartVillage/user/user/create', 'verb' => 'POST'],
             ['pattern' => 'auth/signup', 'route' => 'smartVillage/user/user/signup', 'verb' => 'POST'],
 
+            //Issue-48
+            ['pattern' => '/user/<userId:\d+>','route' => 'smartVillage/user/user-find/find-user', 'verb' => 'GET'],
+
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
             ['pattern' => 'mail', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
             //mark unread message of conversation as read
