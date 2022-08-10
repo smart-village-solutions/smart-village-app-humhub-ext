@@ -4,6 +4,7 @@ namespace humhub\modules\smartVillage\controllers\space;
 
 use humhub\modules\rest\components\BaseController;
 use humhub\modules\rest\definitions\SpaceDefinitions;
+use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\space\models\Membership;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
@@ -67,5 +68,52 @@ class MembershipController extends BaseController
             $results[] = SpaceDefinitions::getSpaceMembership($membership);
         }
         return $this->returnPagination($query,$pagination,$results);
+    }
+
+    /**
+     * @return void
+     * Get all the spaces list of the user
+     */
+    //Get the list of all spaces of the user (issue-8 new endpoint)
+    public function actionGetSpaces(){
+       $userId = Yii::$app->user->id;
+
+       $user = User::findOne($userId);
+
+       if($user == null){
+           return $this->returnError(404, 'User not found!');
+       }
+
+       $spaceMemberships = Membership::find()->where(['user_id' => $userId]);
+
+        if($spaceMemberships->all() == null){
+            return $this->returnError(404, 'Space not found for the user : '.$userId);
+        }
+
+        $results = [];
+        $pagination = $this->handlePagination($spaceMemberships);
+
+        foreach ($spaceMemberships->all() as $spaceMembership){
+            $results[] = $this->getSpacesListData($spaceMembership);
+        }
+
+        return $this->returnPagination($spaceMemberships,$pagination,$results);
+    }
+
+    public function getSpacesListData(Membership $membership){
+        return [
+            'user' => UserDefinitions::getUserShort($membership->user),
+            'space_id' => $membership->space_id,
+            'role' => $membership->group_id,
+            'status' => $membership->status,
+            'can_cancel_membership' => $membership->can_cancel_membership,
+            'send_notifications' => $membership->send_notifications,
+            'show_at_dashboard' => $membership->show_at_dashboard,
+            'originator_user' => ($membership->originator !== null) ? UserDefinitions::getUserShort($membership->originator) : null,
+            'member_since' => $membership->created_at,
+            'request_message' => $membership->request_message,
+            'updated_at' => $membership->updated_at,
+            'last_visit' => $membership->last_visit,
+        ];
     }
 }

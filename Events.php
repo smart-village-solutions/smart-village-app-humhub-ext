@@ -76,6 +76,9 @@ class Events
             //Get all the members list of a space (issue-45 new endpoint)
             ['pattern'=>'space/<spaceId:\d+>/membership', 'route' => 'smartVillage/space/membership/index', 'verb' => 'GET'],
 
+            //Get the list of all spaces of the user (issue-8 new endpoint)
+            ['pattern' => 'space/memberships', 'route' => 'smartVillage/space/membership/get-spaces', 'verb' => 'GET'],
+
             //linklist category
             ['pattern' => 'categories', 'route' => 'smartVillage/linklist/category/index', 'verb' => 'GET'],
             ['pattern' => 'category/<categoryId:\d+>', 'route' => 'smartVillage/linklist/category/view', 'verb' => 'GET'],
