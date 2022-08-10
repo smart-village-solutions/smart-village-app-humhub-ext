@@ -45,7 +45,7 @@ return array (
   'Self test' => 'Selbsttest',
   'Settings' => 'Einstellungen',
   'Sign up' => 'Registrieren',
-  'Spaces' => 'Spaces',
+  'Spaces' => 'Gruppen und Vereine',
   'Statistics' => 'Statistiken',
   'The cron job for the background jobs (queue) does not seem to work properly.' => 'Der Cron-Job für die Hintergrundjobs (Queue) scheint nicht richtig zu funktionieren.',
   'The cron job for the regular tasks (cron) does not seem to work properly.' => 'Der Cron-Job für die regulären Aufgaben (cron) scheint nicht richtig zu funktionieren.',

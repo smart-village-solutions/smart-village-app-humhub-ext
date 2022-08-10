@@ -110,7 +110,7 @@ return array (
   'Space Visibility' => 'Space Sichtbarkeit',
   'Space directory' => 'Space-Verzeichnis',
   'Space is invisible!' => 'Space ist unsichtbar!',
-  'Spaces' => 'Spaces',
+  'Spaces' => 'Gruppen und Vereine',
   'Status' => 'Status',
   'Stream' => 'Beiträge',
   'Tags' => 'Tags',

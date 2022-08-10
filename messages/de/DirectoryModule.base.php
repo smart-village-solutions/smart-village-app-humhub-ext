@@ -24,7 +24,7 @@ return [
     'Online right now' => 'Jetzt online',
     'Private spaces' => 'Private Spaces',
     'Search' => 'Suchen',
-    'Spaces' => 'Spaces',
+    'Spaces' => 'Gruppen und Vereine',
     'This group has no members yet.' => 'Diese Gruppe hat bislang keine Mitglieder.',
     'Top Group' => 'Top Gruppen',
     'Total groups' => 'Gruppen insgesamt',
