@@ -102,7 +102,7 @@ class MembershipController extends BaseController
 
     public function getSpacesListData(Membership $membership){
         return [
-            'owner' => UserDefinitions::getUserShort($membership->user),
+            'owner' => UserDefinitions::getUserShort($membership->space->ownerUser),
             'id' => $membership->space_id,
             'guid' => $membership->space->guid,
             'name' => $membership->space->name,
