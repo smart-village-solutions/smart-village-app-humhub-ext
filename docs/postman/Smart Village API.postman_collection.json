@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "671f8086-1b87-423e-a0c3-9d1463466363",
+		"_postman_id": "88194e98-1c16-47e4-99bd-23f888387db5",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17408055"
@@ -778,6 +778,55 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "mail",
+			"item": [
+				{
+					"name": "Upload Files",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/G:/INeuron/live class projects/Tailwind/projects/shopify/assets/screenshots/screenshot-1.png"
+								},
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/G:/INeuron/live class projects/Tailwind/projects/rode/assets/images/rode-nth-2.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/v2/mail/1/upload-files",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"mail",
+								"1",
+								"upload-files"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
