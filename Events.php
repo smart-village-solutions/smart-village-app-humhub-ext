@@ -51,6 +51,9 @@ class Events
             //Issue-48
             ['pattern' => '/user/<userId:\d+>','route' => 'smartVillage/user/user-find/find-user', 'verb' => 'GET'],
 
+            //Issue-61
+            ['pattern' => 'user', 'route' => 'smartVillage/user/user-find/index', 'verb' => 'GET'],
+
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
             ['pattern' => 'mail', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
             //mark unread message of conversation as read

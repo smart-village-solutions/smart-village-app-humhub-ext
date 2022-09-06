@@ -24,4 +24,20 @@ class UserFindController extends BaseController
 
        return UserDefinitions::getUser($user);
    }
+
+    /**
+     * @return mixed
+     * Issue-61
+     * Get the list of all registered user, earlier only admin can get the user's list but now every registered user can get the user's list.
+     */
+   public function actionIndex(){
+     $results = [];
+     $query = User::find();
+
+     $pagination = $this->handlePagination($query);
+     foreach($query->all() as $user){
+         $results[] = UserDefinitions::getUser($user);
+     }
+       return $this->returnPagination($query, $pagination, $results);
+   }
 }
