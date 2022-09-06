@@ -53,6 +53,10 @@ class Events
 
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
             ['pattern' => 'mail', 'route' => 'smartVillage/mail/message/index', 'verb' => 'GET'],
+
+            //Issue-59
+            ['pattern' => 'mail/<messageId:\d+>/upload-files', 'route' => 'smartVillage/mail/file-upload/index', 'verb' => 'POST'],
+
             //mark unread message of conversation as read
             ['pattern' => 'mail/<messageId:\d+>/entries', 'route' => 'smartVillage/mail/entry/index', 'verb' => 'GET'],
 
