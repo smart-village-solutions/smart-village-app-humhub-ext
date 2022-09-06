@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "88194e98-1c16-47e4-99bd-23f888387db5",
+		"_postman_id": "1f5264a6-6561-4a91-9777-6b23d6632101",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17408055"
@@ -325,6 +325,26 @@
 								"space",
 								"2",
 								"membership"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all spaces of the user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space/memberships",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space",
+								"memberships"
 							]
 						}
 					},
