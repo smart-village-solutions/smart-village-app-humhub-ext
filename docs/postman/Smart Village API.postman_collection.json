@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1f5264a6-6561-4a91-9777-6b23d6632101",
+		"_postman_id": "5f1eb4fb-8301-4520-a4ba-44701e5ea8c8",
 		"name": "Smart Village API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17408055"
@@ -1014,6 +1014,35 @@
 						"v2",
 						"user",
 						"31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NjI0MzkwNjYsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvaHVtaHViIiwibmJmIjoxNjYyNDM5MDY2LCJ1aWQiOjI4LCJlbWFpbCI6IndpbS5kb2VAZXhhbXBsZS5jb20ifQ.gjV-O4wUc7CLAve84lU6Gw4ndQojekabzTdjV1TjLEMXsFpXiKG_zfiQE3Lenqoi95tenKWXCdUCtI1_1n2N2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v2/user",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"user"
 					]
 				}
 			},
