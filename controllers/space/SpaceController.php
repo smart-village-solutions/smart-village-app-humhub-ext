@@ -2,15 +2,27 @@
 
 namespace humhub\modules\smartVillage\controllers\space;
 
+use Firebase\JWT\JWT;
+use humhub\modules\rest\models\ConfigureForm;
 use humhub\modules\smartVillage\components\AuthBaseController;
 use humhub\modules\space\models\Space;
 use humhub\modules\rest\definitions\SpaceDefinitions;
+use humhub\modules\user\models\User;
+use Yii;
 
 class SpaceController extends AuthBaseController
 {
     public function actionFind(){
         $results = [];
-        $query = Space::find()->where(['visibility' => Space::VISIBILITY_ALL]);
+
+        //Check the requested user is guest or not
+        $user = $this->checkUserIsRegistered();
+        if($user == false){
+            $query = Space::find()->where(['visibility' => Space::VISIBILITY_ALL]);
+        }else{
+            $query = Space::find()->where(['visibility' => Space::VISIBILITY_REGISTERED_ONLY])->orWhere(['visibility' => Space::VISIBILITY_ALL]);
+
+        }
 
         $pagination = $this->handlePagination($query);
         foreach ($query->all() as $space) {
@@ -18,28 +30,40 @@ class SpaceController extends AuthBaseController
         }
         if(count($results) > 0){
             return $this->returnPagination($query, $pagination, $results);
-        }else{
-            return $this->returnError(400,"No space data is publicly available!");
         }
     }
 
     public function actionView($spaceId){
-        $checkSpace = Space::findOne($spaceId);
-        $checkVisibility = Space::find()->where(['id'=> $spaceId])->andWhere(['visibility' => Space::VISIBILITY_ALL])->one();
+        $space = Space::findOne($spaceId);
 
-        if(!isset($checkSpace)){
+        if(!isset($space)){
             return $this->returnError(400,"Space not found!");
         }
 
-        if(!isset($checkVisibility)){
-            return $this->returnError(400,"Guest user cannot read this space data");
+        $user = $this->checkUserIsRegistered();
+        if($user == false){
+            if($space->visibility == Space::VISIBILITY_REGISTERED_ONLY || $space->visibility == Space::VISIBILITY_NONE){
+                return $this->returnError(400,"Guest user cannot read this space data");
+            }
         }
-
-        $space = Space::find()->where(['id'=> $spaceId])->andWhere(['visibility' => Space::VISIBILITY_ALL])->one();
 
         if(isset($space) && !empty($space)){
             return SpaceDefinitions::getSpace($space);
         }
     }
+
+    private function checkUserIsRegistered(){
+        $authHeader = Yii::$app->request->getHeaders()->get('Authorization');
+        if (!empty($authHeader) && preg_match('/^Bearer\s+(.*?)$/', $authHeader, $matches)) {
+            $token = $matches[1];
+
+            $validData = JWT::decode($token, ConfigureForm::getInstance()->jwtKey, ['HS512']);
+            if (!empty($validData->uid)) {
+                return User::find()->active()->andWhere(['user.id' => $validData->uid])->one();
+            }
+        }
+        return false;
+    }
+
 
 }

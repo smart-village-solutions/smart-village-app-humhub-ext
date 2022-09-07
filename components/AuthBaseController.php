@@ -100,5 +100,50 @@ abstract class AuthBaseController extends Controller
         return array_merge(['code' => $statusCode, 'message' => $message], $additional);
     }
 
+    /**
+     * Handles pagination
+     *
+     * @param ActiveQuery $query
+     * @param int $limit
+     * @return Pagination the pagination
+     */
+    protected function handlePagination(ActiveQuery $query, $limit = 100){
+       $limit = (int)Yii::$app->request->get('limit' , $limit);
+       $page = (int)Yii::$app->request->get('page' , 1);
+
+       if($limit > 100){
+           $limit = 100;
+       }
+       $page--;
+
+       $countQuery = clone $query;
+       $pagination = new Pagination(['totalCount' => $countQuery->count()]);
+       $pagination->setPage($page);
+       $pagination->setPageSize($limit);
+
+       $query->offset($pagination->offset);
+       $query->limit($pagination->limit);
+
+       return $pagination;
+    }
+
+    /**
+     * Generates pagination response
+     *
+     * @param ActiveQuery $query
+     * @param Pagination $pagination
+     * @param $data array
+     * @return array
+     */
+    protected function returnPagination(ActiveQuery $query, Pagination $pagination, $data){
+
+        return[
+            'total' => $pagination->totalCount,
+            'page' => $pagination->getPage() + 1,
+            'pages' => $pagination->getPageCount(),
+            'links' => $pagination->getLinks(),
+            'results' => $data
+        ];
+    }
 
 }
