@@ -8,6 +8,7 @@ use humhub\modules\smartVillage\components\AuthBaseController;
 use humhub\modules\space\models\Space;
 use humhub\modules\rest\definitions\SpaceDefinitions;
 use humhub\modules\user\models\User;
+use Yii;
 
 class SpaceController extends AuthBaseController
 {
@@ -19,7 +20,7 @@ class SpaceController extends AuthBaseController
         if($user == false){
             $query = Space::find()->where(['visibility' => Space::VISIBILITY_ALL]);
         }else{
-            $query = Space::find()->where(['visibility' => Space::VISIBILITY_REGISTERED_ONLY]);
+            $query = Space::find()->where(['visibility' => Space::VISIBILITY_REGISTERED_ONLY])->orWhere(['visibility' => Space::VISIBILITY_ALL]);
 
         }
 
@@ -41,7 +42,7 @@ class SpaceController extends AuthBaseController
 
         $user = $this->checkUserIsRegistered();
         if($user == false){
-            if($space->visibility == Space::VISIBILITY_REGISTERED_ONLY){
+            if($space->visibility == Space::VISIBILITY_REGISTERED_ONLY || $space->visibility == Space::VISIBILITY_NONE){
                 return $this->returnError(400,"Guest user cannot read this space data");
             }
         }
