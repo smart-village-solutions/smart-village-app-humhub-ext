@@ -3,14 +3,20 @@
 namespace humhub\modules\smartVillage\controllers\calendar;
 
 use DateTime;
+use humhub\libs\Html;
+use humhub\modules\calendar\helpers\CalendarUtils;
 use humhub\modules\calendar\interfaces\CalendarService;
 use humhub\modules\calendar\models\CalendarEntry;
+use humhub\modules\calendar\models\CalendarEntryParticipant;
 use humhub\modules\calendar\models\fullcalendar\FullCalendar;
 use humhub\modules\content\components\ActiveQueryContent;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\ContentContainer;
 use humhub\modules\rest\components\BaseContentController;
 use humhub\modules\rest\definitions\ContentDefinitions;
+use humhub\modules\calendar\interfaces\event\CalendarEventIF;
+use humhub\modules\rest\definitions\UserDefinitions;
+use yii\base\InvalidConfigException;
 
 class RecurringEventsController extends BaseContentController
 {
@@ -30,7 +36,7 @@ class RecurringEventsController extends BaseContentController
     public function returnContentDefinition(ContentActiveRecord $contentRecord)
     {
         /** @var CalendarEntry $contentRecord */
-        return FullCalendar::getFullCalendarArray($contentRecord);
+        return static::getRecurringEventData($contentRecord);
     }
 
     /**
@@ -171,6 +177,76 @@ class RecurringEventsController extends BaseContentController
         }
         return $output;
 
+    }
+
+    //Get the data of recurring events
+    public static function getRecurringEventData(CalendarEventIF $entry){
+        $calendarService = new CalendarService();
+        $calendarEntry = CalendarEntry::find()->where(['uid' => $entry['uid']])->one();
+
+        $result = [
+            'parent_id' => $entry['parent_event_id'],
+            'id' => $calendarEntry['id'],
+            'title' => $calendarEntry['title'],
+            'description' => $calendarEntry['description'],
+            'start_datetime' => static::toFullCalendarFormat($entry->getStartDateTime()),
+            'end_datetime' => static::toFullCalendarFormat($entry->getEndDateTime()),
+            'all_day' => (int)$calendarEntry['all_day'],
+            'participation_mode' => (int)$calendarEntry['participation_mode'],
+            'participant_info' => $calendarEntry['participant_info'],
+            'closed' => (int)$calendarEntry['closed'],
+            'max_participants' => (int)$calendarEntry['max_participants'],
+            'editable' => false,
+            'color' => Html::encode($calendarService->getEventColor($entry)),
+            'allow_decline' => (int)$calendarEntry['allow_decline'],
+            'allow_maybe' => (int)$calendarEntry['allow_maybe'],
+            'time_zone' => $calendarEntry['time_zone'],
+            'url' => $entry->getUrl(),
+            'icon' => $entry->getEventType()->getIcon(),
+            'eventDurationEditable' => true,
+            'eventStartEditable' => true,
+            'content' => ContentDefinitions::getContent($calendarEntry['content']),
+            'participants' => static::getParticipantUsers($calendarEntry->getParticipantEntries()->with('user')->all())
+        ];
+
+        //If we update the particular entry of a recurring event then it will be saved as new entry but the uid will be same as parent's uid.
+        if($entry instanceof ContentActiveRecord) {
+            $result['id'] = $entry->getPrimaryKey();
+        }
+
+        return $result;
+    }
+
+    private static function getParticipantUsers($participants)
+    {
+        $result = [
+            'attending' => [],
+            'maybe' => [],
+            'declined' => []
+        ];
+
+        foreach ($participants as $participant) {
+            if ($participant->participation_state === CalendarEntryParticipant::PARTICIPATION_STATE_ACCEPTED) {
+                $result['attending'][] = UserDefinitions::getUserShort($participant->user);
+            } elseif ($participant->participation_state === CalendarEntryParticipant::PARTICIPATION_STATE_MAYBE){
+                $result['maybe'][] = UserDefinitions::getUserShort($participant->user);
+            } elseif ($participant->participation_state === CalendarEntryParticipant::PARTICIPATION_STATE_DECLINED){
+                $result['declined'][] = UserDefinitions::getUserShort($participant->user);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param DateTime $dt
+     * @param bool $allDay
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public static function toFullCalendarFormat(DateTime $dt)
+    {
+        return $dt->format(CalendarUtils::DB_DATE_FORMAT);
     }
 
 }
