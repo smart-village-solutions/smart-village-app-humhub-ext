@@ -3,6 +3,7 @@
 namespace humhub\modules\smartVillage\controllers\space;
 
 use Firebase\JWT\JWT;
+use humhub\modules\rest\models\ConfigureForm;
 use humhub\modules\smartVillage\components\AuthBaseController;
 use humhub\modules\space\models\Space;
 use humhub\modules\rest\definitions\SpaceDefinitions;
@@ -55,7 +56,7 @@ class SpaceController extends AuthBaseController
         if (!empty($authHeader) && preg_match('/^Bearer\s+(.*?)$/', $authHeader, $matches)) {
             $token = $matches[1];
 
-            $validData = JWT::decode($token, "NFqRh33ofXCLYQ9SvFiX3lnBa7qLl2NcMBj_gYMaTCwdcxSIqY3rYxJ2UWXiE1R0Ow0oYg4fJk9HaVGykWzFry", ['HS512']);
+            $validData = JWT::decode($token, ConfigureForm::getInstance()->jwtKey, ['HS512']);
             if (!empty($validData->uid)) {
                 return User::find()->active()->andWhere(['user.id' => $validData->uid])->one();
             }
