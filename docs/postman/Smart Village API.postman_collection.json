@@ -407,6 +407,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Membership - List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space/2/membership",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space",
+								"2",
+								"membership"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -592,14 +613,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{API_URL}}/api/v2/delete/category/7?cguid=30fce8a1-99d6-4147-846d-4067409aa9c6",
+									"raw": "{{API_URL}}/api/v2/category/7?cguid=30fce8a1-99d6-4147-846d-4067409aa9c6",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
 										"v2",
-										"delete",
 										"category",
 										"7"
 									],
@@ -799,14 +819,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{API_URL}}/api/v2/delete/link/5?cguid=30fce8a1-99d6-4147-846d-4067409aa9c6",
+									"raw": "{{API_URL}}/api/v2/link/5?cguid=30fce8a1-99d6-4147-846d-4067409aa9c6",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"api",
 										"v2",
-										"delete",
 										"link",
 										"5"
 									],
@@ -1005,6 +1024,26 @@
 						"v2",
 						"auth",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v2/user/31",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"user",
+						"31"
 					]
 				}
 			},
