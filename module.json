@@ -3,7 +3,7 @@
   "name": "Smart Village App",
   "description": "Provides extended features for integration in the Smart Village App.",
   "keywords": ["smart village", "smart village solutions", "smart village app"],
-  "version": "0.4.3",
+  "version": "0.5",
   "homepage": "https://github.com/ikuseiGmbH/smart-village-app-humhub-ext",
   "humhub": {
     "minVersion": "1.8.3"

@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.5]
+
+Allow access to data for guests and more updated rights to access data for registered users
+
+### Added
+
+- added support for reccuring events
+- added date range filter for calendar query
+- added public accesses for guests
+- added endpoint to upload files to mails
+
+### Changed
+
+- updated text for Space into Gruppen und Vereine
+
 ## [v0.4.3]
 
 Allow more accesses without admin rights and some wordings
