@@ -10,16 +10,16 @@ return [
 	'namespace' => 'humhub\modules\smartVillage',
 	'events' => [
         //Hide SmartVillage from header and sidebar for users
-//		[
-//			'class' => TopMenu::class,
-//			'event' => TopMenu::EVENT_INIT,
-//			'callback' => [Events::class, 'onTopMenuInit'],
-//		],
-//		[
-//			'class' => AdminMenu::class,
-//			'event' => AdminMenu::EVENT_INIT,
-//			'callback' => [Events::class, 'onAdminMenuInit']
-//		],
+        // [
+        //         'class' => TopMenu::class,
+        //         'event' => TopMenu::EVENT_INIT,
+        //         'callback' => [Events::class, 'onTopMenuInit'],
+        // ],
+        // [
+        //         'class' => AdminMenu::class,
+        //         'event' => AdminMenu::EVENT_INIT,
+        //         'callback' => [Events::class, 'onAdminMenuInit']
+        // ],
         [
              'class' => 'humhub\modules\rest\Module',
              'event' => 'restApiAddRules' ,

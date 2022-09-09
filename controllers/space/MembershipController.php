@@ -102,12 +102,12 @@ class MembershipController extends BaseController
 
     public function getSpacesListData(Membership $membership){
         return [
-            'owner' => UserDefinitions::getUserShort($membership->space->ownerUser),
             'id' => $membership->space_id,
             'guid' => $membership->space->guid,
             'name' => $membership->space->name,
             'description' => $membership->space->description,
             'visibility' => $membership->space->visibility,
+            'join_policy' => $membership->space->join_policy,
             'tags' => $membership->space->getTags(),
             'contentcontainer_id' => $membership->space->contentcontainer_id,
             'role' => $membership->group_id,
@@ -115,6 +115,7 @@ class MembershipController extends BaseController
             'can_cancel_membership' => $membership->can_cancel_membership,
             'send_notifications' => $membership->send_notifications,
             'show_at_dashboard' => $membership->show_at_dashboard,
+            'owner' => UserDefinitions::getUserShort($membership->space->ownerUser),
             'member_since' => $membership->created_at,
             'request_message' => $membership->request_message,
             'updated_at' => $membership->updated_at,
