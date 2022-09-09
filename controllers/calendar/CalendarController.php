@@ -29,7 +29,23 @@ class CalendarController extends AuthBaseController
         $user = $this->checkUserIsRegistered();
         if($user == false){
             $query = $query->where(['content.visibility' => Content::VISIBILITY_PUBLIC]);
+        }
 
+        //Filter the calendar entries by passing date range (start_date and end_date)
+        if(isset($_GET['start_date']) || isset($_GET['end_date'])){
+            if(isset($_GET['start_date']) && !isset($_GET['end_date'])) {
+                $start = $_GET['start_date'];
+                $query->andFilterWhere(['>=', 'start_datetime', $start]);
+            }
+            elseif (!isset($_GET['start_date']) && isset($_GET['end_date'])){
+                $end = $_GET['end_date'];
+                $query->andFilterWhere(['<=','end_datetime',$end]);
+            }
+            else{
+                $start = $_GET['start_date'];
+                $end = $_GET['end_date'];
+                $query->andFilterWhere(['>=','start_datetime',$start])->andFilterWhere(['<=','end_datetime',$end]);
+            }
         }
 
         $pagination = $this->handlePagination($query);
@@ -91,6 +107,23 @@ class CalendarController extends AuthBaseController
         $user = $this->checkUserIsRegistered();
         if($user == false){
             $query = $query->andWhere(['content.visibility' => Content::VISIBILITY_PUBLIC]);
+        }
+
+        //Filter the calendar entries by passing date range (start_date and end_date)
+        if(isset($_GET['start_date']) || isset($_GET['end_date'])){
+            if(isset($_GET['start_date']) && !isset($_GET['end_date'])) {
+                $start = $_GET['start_date'];
+                $query->andFilterWhere(['>=', 'start_datetime', $start]);
+            }
+            elseif (!isset($_GET['start_date']) && isset($_GET['end_date'])){
+                $end = $_GET['end_date'];
+                $query->andFilterWhere(['<=','end_datetime',$end]);
+            }
+            else{
+                $start = $_GET['start_date'];
+                $end = $_GET['end_date'];
+                $query->andFilterWhere(['>=','start_datetime',$start])->andFilterWhere(['<=','end_datetime',$end]);
+            }
         }
 
         ContentDefinitions::handleTopicsParam($query, $containerId);
