@@ -3,7 +3,7 @@
 namespace humhub\modules\smartVillage\controllers\calendar;
 
 use Firebase\JWT\JWT;
-use humhub\modules\calendar\helpers\RestDefinitions;
+use humhub\modules\smartVillage\controllers\calendar\helpers\RestDefinitions;
 use humhub\modules\content\components\ActiveQueryContent;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\Content;
