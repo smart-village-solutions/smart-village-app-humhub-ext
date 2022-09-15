@@ -35,7 +35,7 @@ class CalendarController extends AuthBaseController
         if(isset($_GET['start_date']) || isset($_GET['end_date'])){
             if(isset($_GET['start_date']) && !isset($_GET['end_date'])) {
                 $start = $_GET['start_date'];
-                $query->andFilterWhere(['>=', 'start_datetime', $start]);
+                $query->andFilterWhere(['>=', 'start_datetime', $start])->orFilterWhere(['>=', 'end_datetime', $start]);
             }
             elseif (!isset($_GET['start_date']) && isset($_GET['end_date'])){
                 $end = $_GET['end_date'];
@@ -113,7 +113,7 @@ class CalendarController extends AuthBaseController
         if(isset($_GET['start_date']) || isset($_GET['end_date'])){
             if(isset($_GET['start_date']) && !isset($_GET['end_date'])) {
                 $start = $_GET['start_date'];
-                $query->andFilterWhere(['>=', 'start_datetime', $start]);
+                $query->andFilterWhere(['>=', 'start_datetime', $start])->orFilterWhere(['>=', 'end_datetime', $start]);
             }
             elseif (!isset($_GET['start_date']) && isset($_GET['end_date'])){
                 $end = $_GET['end_date'];
