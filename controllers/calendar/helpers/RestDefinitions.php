@@ -23,7 +23,7 @@ class RestDefinitions
             'allow_decline' => (int)$entry->allow_decline,
             'allow_maybe' => (int)$entry->allow_maybe,
             'time_zone' => $entry->time_zone,
-            'location' => $entry->location ?? "",
+            'location' => $entry->location,
             'participant_info' => $entry->participant_info,
             'closed' => (int)$entry->closed,
             'max_participants' => (int)$entry->max_participants,
