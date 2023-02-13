@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v0.5.1]
+
+New endpoint for ability to leave spaces without admin permission
+
+### Added
+
+- added `DELETE /space/{id}/membership/<userid>` endpoint to leave open spaces with all user roles
+
 ## [v0.5]
 
 Allow access to data for guests and more updated rights to access data for registered users
