@@ -83,6 +83,7 @@ class Events
 
             //space membership
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>', 'route' => 'smartVillage/space/membership/create', 'verb' => 'POST'],
+            ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>', 'route' => 'smartVillage/space/membership/remove', 'verb' => 'DELETE'],
             ['pattern' => 'space/<spaceId:\d+>/membership/<userId:\d+>/request', 'route' => 'smartVillage/user/membership/request-for-membership', 'verb' => 'POST'],
 
             //get all the members list of a space (issue-45 new endpoint)

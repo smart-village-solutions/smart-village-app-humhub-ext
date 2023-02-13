@@ -409,6 +409,38 @@
 					"response": []
 				},
 				{
+					"name": "Membership-Remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NTc2Mjg2NzAsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvaHVtaHViIiwibmJmIjoxNjU3NjI4NjcwLCJ1aWQiOjMxLCJlbWFpbCI6ImdhdXJhdi5oYW5keXNvbHZlckBnbWFpbC5jb20ifQ.0Yb9w7LhMCXoUzX5uxK8V1UqH3TdGviE3buNzrLv-jLSM7k2MiBzeH_COapAHtEKVPTqQD5ItHOUqEcGw2Fx4Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/v2/space/2/membership/31",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"space",
+								"2",
+								"membership",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Membership - List",
 					"request": {
 						"method": "GET",

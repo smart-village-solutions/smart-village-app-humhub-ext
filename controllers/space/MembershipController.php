@@ -43,6 +43,37 @@ class MembershipController extends BaseController
          }
      }
 
+     /**
+     * $spaceId = space id of that space you want adding member in it
+     * $userId = user id
+     * @param $spaceId
+     * @param $userId
+     * @return mixed
+     * Removing members without admin and space's owner.
+     */
+    public function actionRemove($spaceId,$userId){
+        $space = Space::findOne(['id' => (int)$spaceId]);
+        $user = User::findOne(['id' => (int)$userId]);
+
+        if($space == null){
+          return $this->returnError(404,"Space not found");
+        }
+        if($user == null){
+            return $this->returnError(404,"User not found");
+        }
+
+        //check user is already a member of that space or not
+        $checkMembership = Membership::find()
+                            ->where(['space_id'=>$spaceId, 'user_id'=> $userId, 'status'=>Membership::STATUS_MEMBER])
+                            ->one();
+        if($checkMembership == null){
+            return $this->returnError(400,"User is not a member of that space!");
+        }else{
+            $space->removeMember($userId);
+            return $this->returnSuccess('Member deleted!',200);
+        }
+    }
+
     /**
      * @param $spaceId
      * @return mixed
